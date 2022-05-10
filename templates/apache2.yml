@@ -1,0 +1,11 @@
+<source>
+@type tail
+format none
+path ${apache2_log}/*_log
+pos_file /var/log/containers.pos
+  <parse>
+    @type apache2
+  </parse>
+tag apache2_log
+</source>
+
