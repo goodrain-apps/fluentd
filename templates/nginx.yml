@@ -2,7 +2,7 @@
 @type tail
 format none
 path ${nginx_log}/*.log
-pos_file /var/log/containers.pos
+pos_file ${nginx_log}/containers.pos
   <parse>
     @type regexp
     expression /^(?<remote>[^ ]*) (?<host>[^ ]*) (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)"(?:\s+(?<http_x_forwarded_for>[^ ]+))?)?$/
