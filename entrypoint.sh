@@ -41,6 +41,4 @@ auto_envsubst_test(){
 }
 auto_envsubst_test
 
-
-echo "$(sed 's/[0-9].*/114.114.114.114/g' /etc/resolv.conf)" > /etc/resolv.conf
 fluentd -c /fluentd/etc/fluent.conf
