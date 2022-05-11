@@ -1,8 +1,8 @@
 <source>
 @type tail
 format none
-path ${apache2_log}/*_log
-pos_file ${apache2_log}/containers.pos
+path ${HTTP_LOG_PATH}/*_log
+pos_file /var/log/containers.pos
   <parse>
     @type apache2
   </parse>
