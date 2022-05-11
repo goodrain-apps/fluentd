@@ -1,8 +1,8 @@
 <source>
 @type tail
 format none
-path ${mysql_log}/error.log
-pos_file ${mysql_log}/error_containers.pos
+path ${MYSQL_ERROR_PATH}
+pos_file /var/log/error_containers.pos
   <parse>
     @type none
   </parse>
@@ -12,8 +12,8 @@ tag mysql_error_log
 <source>
 @type tail
 format none
-path ${mysql_log}/slow.log
-pos_file ${mysql_log}/slow_containers.pos
+path ${MYSQL_SLOW_PATH}
+pos_file /var/log/slow_containers.pos
   <parse>
     @type none
   </parse>
