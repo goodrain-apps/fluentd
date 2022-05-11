@@ -1,14 +1,24 @@
 <source>
 @type tail
 format none
-path ${nginx_log}/*.log
-pos_file ${nginx_log}/containers.pos
+path ${NGINX_ACCESS_PATH}
+pos_file /var/log/nginx_access.pos
   <parse>
     @type regexp
     expression /^(?<remote>[^ ]*) (?<host>[^ ]*) (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)"(?:\s+(?<http_x_forwarded_for>[^ ]+))?)?$/
     time_key time
     time_format %d/%b/%Y:%H:%M:%S %z
   </parse>
-tag nginx_log
+tag nginx_access_log
 </source>
 
+<source>
+@type tail
+format none
+path ${NGINX_ERROR_PATH}
+pos_file /var/log/nginx_error.pos
+  <parse>
+    @type none
+  </parse>
+tag nginx_error_log
+</source>
