@@ -22,7 +22,6 @@ index_name k8s_
 </match>" >> /fluent.conf
 }
 
-value=`echo $svc`
 if [ $value == "nginx" ]; then
     cat nginx.yml > /fluent.conf
     out_file
