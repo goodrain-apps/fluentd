@@ -8,9 +8,9 @@ echo "
 logstash_format true
 log_level info
 include_tag_key true
-hosts ${ES_ADDR}
-user ${ES_USER}
-password ${ES_PASS}
+hosts ${ES_HOST}
+user ${ES_USERNAME}
+password ${ES_PASSWORD}
 index_name k8s_
   <buffer>
     buffer_chunk_limit 2M
@@ -22,13 +22,13 @@ index_name k8s_
 </match>" >> /fluent.conf
 }
 
-if [ $value == "nginx" ]; then
+if [ $SERVICE_NAME == "nginx" ]; then
     cat nginx.yml > /fluent.conf
     out_file
-elif [ $value == "mysql" ]; then
+elif [ $SERVICE_NAME == "mysql" ]; then
     cat mysql.yml > /fluent.conf
     out_file
-elif [ $value == "apache2" ]; then
+elif [ $SERVICE_NAME == "apache2" ]; then
     cat apache2.yml > /fluent.conf
     out_file
 fi
