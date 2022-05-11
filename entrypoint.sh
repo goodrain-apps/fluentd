@@ -40,3 +40,5 @@ auto_envsubst_test(){
     envsubst "$defined_envs" < "$template" > "$output_path"
 }
 auto_envsubst_test
+
+fluentd -c /fluentd/etc/fluent.conf
