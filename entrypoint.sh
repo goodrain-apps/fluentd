@@ -9,6 +9,7 @@ logstash_format true
 log_level info
 include_tag_key true
 hosts ${ES_HOST}
+port ${ES_PORT}
 user ${ES_USERNAME}
 password ${ES_PASSWORD}
 index_name k8s_
