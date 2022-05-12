@@ -20,7 +20,7 @@ index_name k8s_
     total_limit_size 64G       # 缓冲区最大的容量
     queue_limit_length 256     # 列队数，当缓冲区的文件容量超过限制时，会被放到队列中，等待flush
     flush_interval 60s
-    retry_max_times 30  # 重试flush失败块的此=次数
+    retry_max_times 30  # 重试flush失败块的重试次数
     disable_retry_limit false   # 消息自动重发策略
     retry_wait 1s       # 重试等待时间
     retry_max_times 20   # 重试次数
