@@ -17,8 +17,5 @@ tag nginx_access_log
 format none
 path ${NGINX_ERROR_PATH}
 pos_file /var/log/nginx_error.pos
-  <parse>
-    @type none
-  </parse>
 tag nginx_error_log
 </source>
