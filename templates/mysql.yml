@@ -3,9 +3,6 @@
 format none
 path ${MYSQL_ERROR_PATH}
 pos_file /var/log/error_containers.pos
-  <parse>
-    @type none
-  </parse>
 tag mysql_error_log
 </source>
 
@@ -14,9 +11,6 @@ tag mysql_error_log
 format none
 path ${MYSQL_SLOW_PATH}
 pos_file /var/log/slow_containers.pos
-  <parse>
-    @type none
-  </parse>
 tag mysql_slow_log
 </source>
 
