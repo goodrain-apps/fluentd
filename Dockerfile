@@ -8,7 +8,7 @@ ENV GEM_PATH /fluentd/vendor/bundle/ruby/2.7.0
 ENV GEM_HOME /fluentd/vendor/bundle/ruby/2.7.0
 # skip runtime bundler installation
 ENV FLUENTD_DISABLE_BUNDLER_INJECTION 1
-RUN echo 140.82.113.3 github.com >> /etc/resolv.conf
+COPY columnify /columnify
 
 COPY Gemfile* /fluentd/
 RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
@@ -25,9 +25,7 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf au
     && bundle config silence_root_warning true \
     && bundle install --gemfile=/fluentd/Gemfile --path=/fluentd/vendor/bundle \
     && curl -sL -o columnify_0.1.0_Linux_x86_64.tar.gz https://github.com/reproio/columnify/releases/download/v0.1.0/columnify_0.1.0_Linux_x86_64.tar.gz \
-    && tar xf columnify_0.1.0_Linux_x86_64.tar.gz \
-    && rm LICENSE README.md columnify_0.1.0_Linux_x86_64.tar.gz \
-    && mv columnify /usr/local/bin/ \
+    && mv /columnify /usr/local/bin/ \
     && SUDO_FORCE_REMOVE=yes \
     apt-get purge -y --auto-remove \
                   -o APT::AutoRemove::RecommendsImportant=false \
