@@ -13,6 +13,12 @@ ENV FLUENTD_DISABLE_BUNDLER_INJECTION 1
 COPY Gemfile* /fluentd/
 RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
 RUN sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
+RUN gem sources -a https://gems.ruby-china.com/
+RUN gem sources --remove https://rubygems.org/
+RUN gem sources -c
+RUN gem sources -u
+RUN gem update --system
+RUN gem update
 RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf automake libtool pkg-config curl" \
   runtimeDeps="krb5-kdc libsasl2-modules-gssapi-mit libsasl2-dev" \
      && export DEBIAN_FRONTEND=noninteractive && apt-get update \
