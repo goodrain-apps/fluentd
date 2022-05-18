@@ -10,7 +10,11 @@ ENV GEM_HOME /fluentd/vendor/bundle/ruby/2.7.0
 ENV FLUENTD_DISABLE_BUNDLER_INJECTION 1
 
 COPY Gemfile* /fluentd/
-RUN echo "$(sed 's/[0-9].*/114.114.114.114/g' /etc/resolv.conf)" > /etc/resolv.conf
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+    echo deb http://deb.debian.org/debian buster main >/etc/apt/sources.list && \
+    echo deb http://security.debian.org/debian-security buster/updates main  >>/etc/apt/sources.list && \
+    echo deb http://deb.debian.org/debian buster-updates main >>/etc/apt/sources.list
+
 RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf automake libtool pkg-config curl" \
   runtimeDeps="krb5-kdc libsasl2-modules-gssapi-mit libsasl2-dev" \
      && export DEBIAN_FRONTEND=noninteractive && apt-get update \
