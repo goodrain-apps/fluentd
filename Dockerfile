@@ -13,12 +13,7 @@ ENV FLUENTD_DISABLE_BUNDLER_INJECTION 1
 COPY Gemfile* /fluentd/
 RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
 RUN sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
-RUN gem sources -a https://gems.ruby-china.com/
-RUN gem sources --remove https://rubygems.org/
-RUN gem sources -c
-RUN gem sources -u
-RUN gem update --system
-RUN gem update
+
 RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf automake libtool pkg-config curl" \
   runtimeDeps="krb5-kdc libsasl2-modules-gssapi-mit libsasl2-dev" \
      && export DEBIAN_FRONTEND=noninteractive && apt-get update \
@@ -27,10 +22,6 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf au
      -y --no-install-recommends \
      $buildDeps $runtimeDeps net-tools \
     && gem install bundler --version 2.2.24 \
-    && gem sources -a https://gems.ruby-china.com/ \
-    && gem sources --remove https://rubygems.org/ \
-    && gem sources -c \
-    && gem sources -u \
     && bundle config silence_root_warning true \
     && bundle install --gemfile=/fluentd/Gemfile --path=/fluentd/vendor/bundle \
     && curl -sL -o columnify_0.1.0_Linux_x86_64.tar.gz https://github.com/reproio/columnify/releases/download/v0.1.0/columnify_0.1.0_Linux_x86_64.tar.gz \
