@@ -30,7 +30,7 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf au
     && gem sources -a https://gems.ruby-china.com/ \
     && gem sources --remove https://rubygems.org/ \
     && gem sources -c \
-    && gem sources -u
+    && gem sources -u \
     && bundle config silence_root_warning true \
     && bundle install --gemfile=/fluentd/Gemfile --path=/fluentd/vendor/bundle \
     && curl -sL -o columnify_0.1.0_Linux_x86_64.tar.gz https://github.com/reproio/columnify/releases/download/v0.1.0/columnify_0.1.0_Linux_x86_64.tar.gz \
