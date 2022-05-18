@@ -24,21 +24,12 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf au
     && gem install bundler --version 2.2.24 \
     && bundle config silence_root_warning true \
     && bundle install --gemfile=/fluentd/Gemfile --path=/fluentd/vendor/bundle \
-    && curl -sL -o columnify_0.1.0_Linux_x86_64.tar.gz https://github.com/reproio/columnify/releases/download/v0.1.0/columnify_0.1.0_Linux_x86_64.tar.gz \
-    && tar xf columnify_0.1.0_Linux_x86_64.tar.gz \
-    && rm LICENSE README.md columnify_0.1.0_Linux_x86_64.tar.gz \
-    && mv columnify /usr/local/bin/ \
+    
     && SUDO_FORCE_REMOVE=yes \
     apt-get purge -y --auto-remove \
                   -o APT::AutoRemove::RecommendsImportant=false \
                   $buildDeps \
  && rm -rf /var/lib/apt/lists/* \
-    && gem sources -a http://gems.ruby-china.com/ \
-    && gem sources --remove https://rubygems.org/ \
-    && gem sources -c \
-    && gem sources -u \
-    && gem update --system \
-    && gem update \
     && gem sources --clear-all \
     && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem \
     && ldd $(gem contents rdkafka | grep librdkafka.so) | grep libsasl2.so.2
