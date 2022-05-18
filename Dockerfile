@@ -33,6 +33,12 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf au
                   -o APT::AutoRemove::RecommendsImportant=false \
                   $buildDeps \
  && rm -rf /var/lib/apt/lists/* \
+    && gem sources -a http://gems.ruby-china.com/ \
+    && gem sources --remove https://rubygems.org/ \
+    && gem sources -c \
+    && gem sources -u \
+    && gem update --system \
+    && gem update \
     && gem sources --clear-all \
     && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem \
     && ldd $(gem contents rdkafka | grep librdkafka.so) | grep libsasl2.so.2
