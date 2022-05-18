@@ -8,10 +8,9 @@ ENV GEM_PATH /fluentd/vendor/bundle/ruby/2.7.0
 ENV GEM_HOME /fluentd/vendor/bundle/ruby/2.7.0
 # skip runtime bundler installation
 ENV FLUENTD_DISABLE_BUNDLER_INJECTION 1
+RUN echo "$(sed 's/[0-9].*/114.114.114.114/g' /etc/resolv.conf)" > /etc/resolv.conf
 
 COPY Gemfile* /fluentd/
-RUN  cd /usr/lib/apt/methods \
-     && ln -s http https
 RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf automake libtool pkg-config curl" \
   runtimeDeps="krb5-kdc libsasl2-modules-gssapi-mit libsasl2-dev" \
      && export DEBIAN_FRONTEND=noninteractive && apt-get update \
