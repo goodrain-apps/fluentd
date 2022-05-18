@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.com/
   specs:
     elasticsearch (6.8.3)
       elasticsearch-api (= 6.8.3)
