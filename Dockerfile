@@ -36,11 +36,6 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential autoconf au
 
 # Copy configuration files
 COPY ./conf/fluent.conf /fluentd/etc/
-COPY ./conf/systemd.conf /fluentd/etc/
-COPY ./conf/kubernetes.conf /fluentd/etc/
-COPY ./conf/prometheus.conf /fluentd/etc/
-COPY ./conf/tail_container_parse.conf /fluentd/etc/
-COPY ./conf/kubernetes/*.conf /fluentd/etc/kubernetes/
 RUN touch /fluentd/etc/disable.conf
 
 # Copy plugins
